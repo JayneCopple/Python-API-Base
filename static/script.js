@@ -77,11 +77,12 @@ const del = () => {
 }
 
 // set up the buttons' on click events
+DOM.buttonReadAll.onclick = () => get();
 DOM.buttonCreate.onclick = () => post();
 DOM.buttonReadOne.onclick = () => getOne();
 DOM.buttonUpdate.onclick = () => put();
 DOM.buttonDelete.onclick = () => del();
-DOM.buttonReadAll.onclick = get();
+
 
 // run the get function on page load
 get();
