@@ -81,7 +81,7 @@ DOM.buttonCreate.onclick = () => post();
 DOM.buttonReadOne.onclick = () => getOne();
 DOM.buttonUpdate.onclick = () => put();
 DOM.buttonDelete.onclick = () => del();
-DOM.buttonRead.onclick = () => get();
+DOM.buttonRead.onclick = () => get_all();
 
 // run the get function on page load
 get();
