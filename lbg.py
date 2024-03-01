@@ -126,7 +126,7 @@ def read_one(_id):
     READ ONE (Get)
     """
     # log that we are running the read operation
-    print('\nRead - GET\n')
+    print('\nRead items - GET\n')
 
     # reading item from database by id
     item = ItemModel.query.filter_by(_id=int(_id)).first()
