@@ -4,10 +4,12 @@
 
 set -e
 
-# Define Docker image & Docker container name name
+# Define Docker image & Docker container name
 
 DOCKER_IMAGE="lbg"
+DOCKER_HUB="jaynecopple"
 DOCKER_CONTAINER="lbg-contain"
+HOST=localhost
 
 cleanup() {
 
@@ -21,7 +23,7 @@ cleanup() {
 
     docker rmi -f $(docker images) || true
 
-    echo "Cleanup done."
+    echo "Cleanup complete. Ready to continue"
 
 }
 
@@ -33,7 +35,7 @@ build_docker() {
 
     sleep 3
 
-    docker build -t $DOCKER_IMAGE .
+    docker build -t $DOCKER-HUB/$DOCKER_IMAGE .
 
 }
 
@@ -80,3 +82,5 @@ build_docker
 run_docker
 
 echo "Build process completed successfully."
+
+echo "Application is available at 'http://'$HOST:$PORT"
