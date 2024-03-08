@@ -17,5 +17,9 @@ pipeline {
         }
     }
     post {
+        always {
+                sh '''
+                
+                '''
     }
 }
