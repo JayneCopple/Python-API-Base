@@ -48,7 +48,6 @@ echo "Starting build process...fingers crossed!!"
 sleep 3
 cleanup
 build_docker
-build_docker
 run_docker
 
 echo "Build process completed successfully."
