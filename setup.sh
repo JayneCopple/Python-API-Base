@@ -5,7 +5,7 @@ set -e
 
 # Define Docker image, image version & Docker container name
 export DOCKER_IMAGE=lbg
-export IMAGE-VERSION=1.0
+export IMAGE_VERSION=1.0
 export DOCKER_CONTAINER=lbg-contain
 export DOCKER_HUB=""
 # Define port variable
@@ -29,7 +29,7 @@ build_docker() {
     echo "Building the Docker image..."
     sleep 3
 
-    docker build -t $DOCKER_HUB$DOCKER_IMAGE:$IMAGE-VERSION --build-arg PORT=$PORT .
+    docker build -t $DOCKER_HUB$DOCKER_IMAGE:$IMAGE_VERSION --build-arg PORT=$PORT .
 }
 
 # Function to run the Docker container
