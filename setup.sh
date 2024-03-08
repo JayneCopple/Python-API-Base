@@ -8,6 +8,8 @@ export DOCKER_IMAGE=lbg
 export IMAGE_VERSION=1.0
 export DOCKER_CONTAINER=lbg-contain
 export DOCKER_HUB=""
+# export DOCKER_HUB="jaynecopple/"
+
 # Define port variable
 export PORT=5001
 
