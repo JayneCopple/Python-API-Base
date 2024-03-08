@@ -7,7 +7,7 @@ set -e
 # Define Docker image & Docker container name
 
 DOCKER_IMAGE="lbg"
-DOCKER_HUB="jaynecopple"
+DOCKER_HUB="jaynecopple/"
 DOCKER_CONTAINER="lbg-contain"
 HOST=localhost
 
@@ -35,7 +35,7 @@ build_docker() {
 
     sleep 3
 
-    docker build -t $DOCKER-HUB/$DOCKER_IMAGE .
+    docker build -t $DOCKER_HUB$DOCKER_IMAGE .
 
 }
 
