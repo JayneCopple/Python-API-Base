@@ -3,6 +3,7 @@ FROM python:latest
 WORKDIR /app
 
 ARG PORT:8080
+ARG DOCKER_HUB="jaynecopple/"
 
 COPY . .
 
