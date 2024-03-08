@@ -7,6 +7,7 @@ set -e
 DOCKER_IMAGE="lbg"
 IMAGE-VERSION=1.0
 DOCKER_CONTAINER="lbg-contain"
+DOCKER_HUB=""
 # Define port variable
 export PORT=5001
 
