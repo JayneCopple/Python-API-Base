@@ -4,13 +4,14 @@
 
 set -e
 
-# Define Docker image name
+# Define Docker image & Docker container name name
 
 DOCKER_IMAGE="lbg"
+DOCKER_CONTAINER="lbg-contain"
 
 cleanup() {
 
-    echo "Cleaning up previous build artifacts..."
+    echo "Cleaning up previous build artifacts...removing previous containers & images"
 
     sleep 3
 
@@ -54,17 +55,17 @@ modify_app() {
 
 run_docker() {
 
-    echo "Running Docker container..."
+    echo "Running new Docker container..."
 
     sleep 3
 
-    docker run -d -p 80:$PORT -e PORT=$PORT $DOCKER_IMAGE
+    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_IMAGE
 
 }
 
 # Main script execution
 
-echo "Starting build process..."
+echo "Starting build process...fingers crossed!!"
 
 sleep 3
 
