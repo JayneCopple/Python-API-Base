@@ -1,89 +1,54 @@
 #!/bin/bash
 
 # Exit script if any command fails
-
 set -e
 
-# Define Docker image & Docker container name
-
+# Define Docker image, image version & Docker container name
 DOCKER_IMAGE="lbg"
-#include details for my DockerHub
-#DOCKER_HUB="jaynecopple/"
-DOCKER_HUB=""
+IMAGE-VERSION=1.0
 DOCKER_CONTAINER="lbg-contain"
+# Define port variable
+export PORT=5001
 
+# Function to run to clean up ALL images & containers first
 cleanup() {
-
     echo "Cleaning up previous build artifacts...removing previous containers & images"
-
     sleep 3
 
-    # Add commands to clean up previous build artifacts
-
-    docker rm -f $(docker ps -aq) || true
-
-    docker rmi -f $(docker images) || true
+    # Add commands to clean up previous build artifacts - stop continers, remove containers, remove images
+    docker stop $(docker ps -q) || true
+    docker rm $(docker ps -aq) || true
+    docker rmi $(docker images) || true
 
     echo "Cleanup complete. Ready to continue"
-
 }
 
 # Function to build the Docker image
-
 build_docker() {
-
     echo "Building the Docker image..."
-
     sleep 3
 
-    docker build -t $DOCKER_HUB$DOCKER_IMAGE .
-
-}
-
-# Function to modify the application
-
-modify_app() {
-
-    echo "Modifying the application..."
-
-    sleep 3
-
-   export PORT=5001
-
-    echo "Modifications done. Port is now set to $PORT"
-
+    docker build -t $DOCKER_HUB$DOCKER_IMAGE:$IMAGE-VERSION --build-arg PORT=$PORT .
 }
 
 # Function to run the Docker container
-
 run_docker() {
-
     echo "Running new Docker container..."
-
     sleep 3
 
     # REPLACED docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_IMAGE
     docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_HUB$DOCKER_IMAGE
-    
-
 }
 
-# Main script execution
+# Main script execution - run each of the functions already defined
 
 echo "Starting build process...fingers crossed!!"
 
 sleep 3
-
 cleanup
-
 build_docker
-
-modify_app
-
 build_docker
-
 run_docker
 
 echo "Build process completed successfully."
-
 echo "Application is now available from container"
