@@ -61,7 +61,9 @@ run_docker() {
 
     sleep 3
 
-    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_IMAGE
+    # REPLACED docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_IMAGE
+    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_HUB$DOCKER_IMAGE
+    
 
 }
 
@@ -83,4 +85,4 @@ run_docker
 
 echo "Build process completed successfully."
 
-echo "Application is available at 'http://'$HOST:$PORT"
+echo "Application is now available at 'http://'$HOST:$PORT"
