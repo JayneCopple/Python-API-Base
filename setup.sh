@@ -7,9 +7,10 @@ set -e
 # Define Docker image & Docker container name
 
 DOCKER_IMAGE="lbg"
-DOCKER_HUB="jaynecopple/"
+#include details for my DockerHub
+#DOCKER_HUB="jaynecopple/"
+DOCKER_HUB=""
 DOCKER_CONTAINER="lbg-contain"
-HOST=localhost
 
 cleanup() {
 
@@ -85,4 +86,4 @@ run_docker
 
 echo "Build process completed successfully."
 
-echo "Application is now available at 'http://'$HOST:$PORT"
+echo "Application is now available from container"
