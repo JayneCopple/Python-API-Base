@@ -38,7 +38,7 @@ run_docker() {
     sleep 3
 
     # REPLACED docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_IMAGE
-    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_HUB$DOCKER_IMAGE
+    docker run -d -p 80:$PORT -e PORT=$PORT --name $DOCKER_CONTAINER $DOCKER_HUB$DOCKER_IMAGE:$IMAGE_VERSION
 }
 
 # Main script execution - run each of the functions already defined
