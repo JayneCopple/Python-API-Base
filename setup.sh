@@ -4,10 +4,10 @@
 set -e
 
 # Define Docker image, image version & Docker container name
-DOCKER_IMAGE="lbg"
-IMAGE-VERSION=1.0
-DOCKER_CONTAINER="lbg-contain"
-DOCKER_HUB=""
+export DOCKER_IMAGE=lbg
+export IMAGE-VERSION=1.0
+export DOCKER_CONTAINER=lbg-contain
+export DOCKER_HUB=""
 # Define port variable
 export PORT=5001
 
