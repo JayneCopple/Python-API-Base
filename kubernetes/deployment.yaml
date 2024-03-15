@@ -34,7 +34,7 @@ spec:
         app: jayne-api
     spec:
       containers:
-      - image: eu.gcr.io/lbg-mea-17/jayne-python-api:v5
+      - image: eu.gcr.io/lbg-mea-17/jayne-python-api:v6
         name: jayne-api-container
         imagePullPolicy: Always
         ports:
