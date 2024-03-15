@@ -9,14 +9,15 @@ pipeline {
         PROJECT_ID = 'lbg-mea-17'
         CLUSTER_NAME = 'jayne-kube-cluster'
         LOCATION = 'europe-west2-c'
-        CREDENTIALS_ID = 'jayne-jenkins-k8s-srv@lbg-mea-17.iam.gserviceaccount.com'
+        //CREDENTIALS_ID = 'jayne-jenkins-k8s-srv@lbg-mea-17.iam.gserviceaccount.com'
+        CREDENTIALS_ID = 'jayne-jenkins-k8s-srv'
         }
     stages {
         stage('Build') {
             steps {
                 script {
                 // Authenticate with Google Cloud
-                withCredentials([file(credentialsId: GCR_CREDENTIALS_ID, variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                withCredentials([file(credentialsId: $GCR_CREDENTIALS_ID, variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
                     echo $GCR_CREDENTIALS_ID
                     echo $GOOGLE_APPLICATION_CREDENTIALS
                 sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
