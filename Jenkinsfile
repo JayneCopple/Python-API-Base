@@ -3,7 +3,7 @@ pipeline {
     environment {
         GCR_CREDENTIALS_ID = "jayne-srv-storage-admin"
         IMAGE_NAME = "jayne-python-api"
-        BUILD_VERSION = "v3"
+        BUILD_VERSION = "v4"
         GCR_URL = "eu.gcr.io/lbg-mea-17"
         PROJECT_ID = "lbg-mea-17"
         CLUSTER_NAME = "jayne-kube-cluster"
@@ -35,7 +35,13 @@ pipeline {
                  script {
                  // Deploy to GKE using Jenkins Kubernetes Engine Plugin
 
-                    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'kubernetes/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])   
+                    step([$class: 'KubernetesEngineBuilder', 
+                    projectId: env.PROJECT_ID, 
+                    clusterName: env.CLUSTER_NAME, 
+                    location: env.LOCATION, 
+                    manifestPattern: 'kubernetes/deployment.yaml', 
+                    credentialsId: env.CREDENTIALS_ID, 
+                    verifyDeployments: true])   
                  }
             }
         }
