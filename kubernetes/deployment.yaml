@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: jayne-flask-container
-        image: eu.gcr.io/lbg-mea-17/jayne-python-api:latest
+        image: eu.gcr.io/lbg-mea-17/jayne-python-api:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
