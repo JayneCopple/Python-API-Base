@@ -3,7 +3,7 @@ pipeline {
     environment {
         GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin'
         IMAGE_NAME = 'jayne-python-api'
-        BUILD_VERSION = 'v2'
+        BUILD_VERSION = 'v3'
         GCR_URL = 'eu.gcr.io/lbg-mea-17'
         PROJECT_ID = 'lbg-mea-17'
         CLUSTER_NAME = 'jayne-kube-cluster'
@@ -39,5 +39,11 @@ pipeline {
             }
         }
 
+    }
+    post {
+        always {
+            sh "docker system prune -f"
+            sh "gcloud config set account null"
+        }
     }
 }
