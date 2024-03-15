@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: jayne-flask
+    app: flask
   ports:
   - protocol: TCP
     port: 80
@@ -16,12 +16,12 @@ kind: Deployment
 metadata:
   name: jayne-flask-deployment
   labels:
-    app: jayne-flask
+    app: flask
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: jayne-flask 
+      app: flask
   strategy:
     rollingUpdate:
       maxSurge: 20%
@@ -29,11 +29,11 @@ spec:
   template:
     metadata:
       labels:
-        app: jayne-flask
+        app: flask
     spec:
       containers:
       - name: jayne-flask-container
-        image: eu.gcr.io/lbg-mea-17/jayne-python-api:latest
+        image: eu.gcr.io/lbg-mea-17/jayne-python-api:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
