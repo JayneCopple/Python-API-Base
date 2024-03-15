@@ -2,38 +2,40 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jayne-api-service
+  labels:
+    app: jayne-api
 spec:
   type: LoadBalancer
   selector:
-    app: flask-app
+    app: jayne-api
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: {{PORT}}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jayne-api-deployment
+  name: jayne-api-deploy
   labels:
-    app: flask-app
+    app: jayne-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: flask-app
+      app: jayne-api
   strategy:
     rollingUpdate:
-      maxSurge: 20%
-      maxUnavailable: 20%
+      maxSurge: 50%
+      maxUnavailable: 50%
   template:
     metadata:
       labels:
-        app: flask-app
+        app: jayne-api
     spec:
       containers:
-      - name: jayne-api-container
-        image: eu.gcr.io/lbg-mea-17/jayne-python-api:{{BUILD_VERSION}}
+      - image: {{GCR_URL}}/{{IMAGE_NAME}}:{{BUILD_VERSION}}
+        name: jayne-api-container
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

@@ -1,14 +1,15 @@
 pipeline {
     agent any
     environment {
-        GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin'
-        IMAGE_NAME = 'jayne-python-api'
-        BUILD_VERSION = 'v3'
-        GCR_URL = 'eu.gcr.io/lbg-mea-17'
-        PROJECT_ID = 'lbg-mea-17'
-        CLUSTER_NAME = 'jayne-kube-cluster'
-        LOCATION = 'europe-west2-c'
-        CREDENTIALS_ID = 'jayne-jenkins-k8s-srv'
+        GCR_CREDENTIALS_ID = "jayne-srv-storage-admin"
+        IMAGE_NAME = "jayne-python-api"
+        BUILD_VERSION = "v3"
+        GCR_URL = "eu.gcr.io/lbg-mea-17"
+        PROJECT_ID = "lbg-mea-17"
+        CLUSTER_NAME = "jayne-kube-cluster"
+        PORT = "8080"
+        LOCATION = "europe-west2-c"
+        CREDENTIALS_ID = "jayne-jenkins-k8s-srv"
         }
     stages {
         stage('Build') {
