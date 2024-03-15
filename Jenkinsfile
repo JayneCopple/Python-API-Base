@@ -3,6 +3,7 @@ pipeline {
     environment {
         GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin@lbg-mea-17.iam.gserviceaccount.com'
         IMAGE_NAME = 'jayne-python-api'
+        BUILD_VERSION = 'v2'
         GCR_URL = 'eu.gcr.io/lbg-mea-17'
         PROJECT_ID = 'lbg-mea-17'
         CLUSTER_NAME = 'jayne-kube-cluster'
@@ -22,14 +23,14 @@ pipeline {
                 sh 'gcloud auth configure-docker --quiet'
 
                 // Build the Docker image
-                sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:latest ."
+                sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:${BUILD_VERSION} ."
                 }
             }
         }
         stage('Push') {
             steps {
                 // Push the Docker image to GCR
-                sh "docker push ${GCR_URL}/${IMAGE_NAME}:latest"
+                sh "docker push ${GCR_URL}/${IMAGE_NAME}:${BUILD_VERSION}"
             }
         }
         stage('Deploy to GKE cluster') {
