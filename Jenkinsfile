@@ -1,9 +1,13 @@
 pipeline {
     agent any
     environment {
-        GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin'
+        GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin@lbg-mea-17.iam.gserviceaccount.com'
         IMAGE_NAME = 'jayne-python-api'
         GCR_URL = 'eu.gcr.io/lbg-mea-17'
+        PROJECT_ID = 'lbg-mea-17'
+        CLUSTER_NAME = 'jayne-kube-cluster'
+        LOCATION = 'europe-west2-c'
+        CREDENTIALS_ID = 'jayne-jenkins-k8s-srv@lbg-mea-17.iam.gserviceaccount.com'
         }
     stages {
         stage('Build') {
@@ -18,16 +22,26 @@ pipeline {
                 sh 'gcloud auth configure-docker --quiet'
 
                 // Build the Docker image
-                sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER} ."
+                sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:latest ."
                 }
             }
         }
         stage('Push') {
             steps {
                 // Push the Docker image to GCR
-                sh "docker push ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER}"
+                sh "docker push ${GCR_URL}/${IMAGE_NAME}:latest"
             }
         }
+        stage('Deploy to GKE cluster') {
+            steps {
+                 script {
+                 // Deploy to GKE using Jenkins Kubernetes Engine Plugin
+
+                    step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'kubernetes/deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])   
+                 }
+            }
+        }
+
     }
     post {
         always {
