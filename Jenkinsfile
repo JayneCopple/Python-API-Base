@@ -42,8 +42,7 @@ pipeline {
     }
     post {
         always {
-            sh "docker system prune -f"
-            sh "gcloud config set account null"
+            sh "echo 'done'"
         }
     }
 }
