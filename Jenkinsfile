@@ -6,7 +6,7 @@ pipeline {
         GCR_URL = 'eu.gcr.io/lbg-mea-17'
         }
     stages {
-        stage('Build and Deploy stage') {
+        stage('Build') {
             steps {
                 script {
                 // Authenticate with Google Cloud
@@ -19,7 +19,8 @@ pipeline {
 
                 // Build the Docker image
                 sh "docker build -t ${GCR_URL}/${IMAGE_NAME}:${BUILD_NUMBER} ."
-           }
+                }
+            }
         }
         stage('Push') {
             steps {
@@ -31,9 +32,8 @@ pipeline {
     post {
         always {
                 sh '''
-                
+                echo "done"
                 '''
         }
     }
-}
 }
