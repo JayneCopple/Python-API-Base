@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin@lbg-mea-17.iam.gserviceaccount.com'
+        //GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin@lbg-mea-17.iam.gserviceaccount.com'
+        GCR_CREDENTIALS_ID = 'jayne-srv-storage-admin'
         IMAGE_NAME = 'jayne-python-api'
         BUILD_VERSION = 'v2'
         GCR_URL = 'eu.gcr.io/lbg-mea-17'
