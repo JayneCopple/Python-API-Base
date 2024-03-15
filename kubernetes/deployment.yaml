@@ -11,7 +11,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -38,4 +38,4 @@ spec:
         name: jayne-api-container
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 80
